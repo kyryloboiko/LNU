@@ -56,7 +56,7 @@ CREATE TABLE `marketlist` (
   `producer` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `year` int DEFAULT NULL,
-  `desctiption` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `detailed_description` varchar(255) DEFAULT NULL,
   `price` float DEFAULT NULL,
   `availability` tinyint(1) DEFAULT NULL,
