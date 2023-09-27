@@ -10,10 +10,10 @@ def discrete_convolution(ArrayX = list, ArrayY = list, ExpandX = 1, ExpandY = 1)
     Result = [0] * (ArrayXLenght+ArrayYLenght-1)
     
     for i in range(ArrayXLenght):
-        ArrayX *= ExpandX
+        ArrayX[i] *= ExpandX
         
     for i in range(ArrayYLenght):
-        ArrayY *= ExpandY
+        ArrayY[i] *= ExpandY
         
     for i in range(ArrayXLenght):
         for j in range(ArrayYLenght):
@@ -85,6 +85,8 @@ def addition(ArrayX = list, ArrayY = list):
 print(scale(xk,2))
 print(shift(xk))
 print(time_reverse(xk))
+print(discrete_convolution(xk,xk))
 print(discrete_convolution(xk,xk,2))
+print(discrete_convolution(xk,xk,2,2))
 print(multiply(xk,yk))
 print(addition(xk,yk))
