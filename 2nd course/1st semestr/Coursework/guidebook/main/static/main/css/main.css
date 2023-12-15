@@ -1,0 +1,74 @@
+body {
+    transition: background-color 0.5s ease;
+    background: rgb(255, 255, 255);
+}
+
+aside {
+    float: left;
+    background-color: rgb(118, 177, 255);
+    width: 165px;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+
+}
+
+aside img {
+    width: 100%;
+    float: left;
+}
+
+aside .logo {
+    font-size: 40px;
+    margin-left: 10px;
+    font-weight: bold;
+
+}
+
+aside ul {list-style: none}
+aside ul li {
+    text-decoration: none;
+    color:#fff;
+    display: block;
+    font-size: 25px;
+    margin-left: -20px;
+    margin-top: 20px;
+    transition: transform .2s ease;
+}
+aside ul li:hover, aside ul a:hover, aside ul label:hover {
+    color: rgb(213, 231, 255);
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+aside ul label{
+    margin-top: 10px;
+    margin-left: -20px;
+    transition: all .2s ease;
+}
+
+.fa-sun {
+    color: #ffe387; /* Жовтий колір для сонця */
+}
+
+body.night-mode .fa-sun {
+    display: none; /* Приховуємо сонце у нічному режимі */
+}
+  
+body.night-mode .fa-moon {
+    display: inline; /* Показуємо місяць у нічному режимі */
+    color: #00213b; /* Темно-синій колір для місяця */
+}
+
+body.night-mode {
+    background-color: #272727;
+    color: #fff;
+    /* Night mode styles */
+  }
+
+body .places {
+    margin-top: 100px;
+    text-align: center;
+    width: 75%;
+    float: left;
+}
