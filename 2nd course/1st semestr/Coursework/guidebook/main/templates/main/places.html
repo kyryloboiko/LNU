@@ -7,7 +7,13 @@
 {% block content %}
     <div class="places">
         <h1>Places page</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut, ad soluta! Harum similique dolorem fugit? Officiis quis adipisci accusamus, exercitationem voluptates ea vel consequatur possimus sint, eaque maiores, asperiores enim.</p>
-        <button class="btn btn-warning">HOla</button>
+        
+        {% for place in places %}
+            <a href=""><div>
+                <h3>{{ place.name }}</h3>
+                <p>{{ place.description }}</p>
+                <p>{{ place.average_review_score }}</p>
+            </div></a>
+        {% endfor %}
     </div>
 {% endblock %}

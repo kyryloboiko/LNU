@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Attendance, Place, Event, Review
 # Create your views here.
+
+
 def places(request):  #The places page
-    data = {}
-    return render(request, 'main/places.html', data)
+    places = Place.objects.all()
+    return render(request, 'main/places.html', {'places':places})
 
 def events(request):  #The events page
     return render(request, 'main/events.html')
