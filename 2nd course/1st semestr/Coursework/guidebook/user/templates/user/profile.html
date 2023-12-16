@@ -1,10 +1,25 @@
-{% extends 'main/layout.html'%}
-
+{% extends 'main/layout.html' %}
 {% block title %}
-    <title>Profile page</title>
+    <title>User Profile</title>
 {% endblock %}
 
 {% block content %}
-    <h1>Profile page</h1>
-    <p>Profile page</p>
+    <main>
+        <h1>User Profile</h1>
+        <div class="content">
+            <!-- Інформація про користувача -->
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <!-- Додаткові дані про користувача -->
+            <!-- Наприклад, інформація з моделі UserProfile -->
+            <p>First Name: {{ user.profile.first_name }}</p>
+            <p>Last Name: {{ user.profile.last_name }}</p>
+            <p>Location: {{ user.profile.location }}</p>
+            <!-- ... -->
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </main>
 {% endblock %}

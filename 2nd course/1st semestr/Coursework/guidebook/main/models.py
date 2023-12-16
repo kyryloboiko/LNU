@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-
+from django.contrib.auth.models import User
 
 class Place(models.Model):
     name = models.CharField('Назва', max_length=255)
@@ -15,16 +15,7 @@ class Place(models.Model):
     longitude = models.FloatField('Довгота', default=0)
     total_reviews = models.IntegerField('Кількість відгуків', default=0)
     total_score = models.IntegerField('Загальна оцінка', default=0)
-
-    def __str__(self):
-        return self.name
-    
-class User(models.Model):
-    name = models.CharField("Ім'я", max_length=255)
-    email = models.EmailField('Електронна почта')
-    phone_number = models.CharField('Номер телефону', max_length=255)
-    date_of_birth = models.DateField('Дата народження')
-    gender = models.CharField('Стать', max_length=255)
+    image = models.ImageField(upload_to='static/main/img/place/', default='default.jpg')
 
     def __str__(self):
         return self.name
@@ -39,6 +30,7 @@ class Event(models.Model):
     latitude = models.FloatField('Широта', default=0)
     longitude = models.FloatField('Довгота', default=0)
     guests = models.TextField('Гості')
+    image = models.ImageField(upload_to='static/main/img/event/', default='default.jpg')
 
     def __str__(self):
         return self.name

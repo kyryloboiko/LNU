@@ -5,15 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    <div class="places">
+    <div class="content">
         <h1>Places page</h1>
         
         {% for place in places %}
-            <a href=""><div>
-                <h3>{{ place.name }}</h3>
-                <p>{{ place.description }}</p>
-                <p>{{ place.average_review_score }}</p>
-            </div></a>
+            <a href="{% url 'place-detail' place.id %}">
+                <div>
+                    <img src="{{ place.image.url }}" alt="{{ place.name }}">
+                    <h3>{{ place.name }}</h3>
+                    <p>{{ place.description }}</p>
+                    <p>{{ place.average_review_score }}</p>
+                </div>
+            </a>
         {% endfor %}
     </div>
 {% endblock %}

@@ -6,7 +6,7 @@ body {
 aside {
     float: left;
     background-color: rgb(118, 177, 255);
-    width: 180px;
+    width: 20%;
     height: 100vh;
     color: #fff;
 
@@ -18,10 +18,9 @@ aside img {
 }
 
 aside .logo {
-    font-size: 40px;
+    font-size: 200%;
     margin-left: 10px;
     font-weight: bold;
-
 }
 
 aside ul {list-style: none}
@@ -65,7 +64,14 @@ body.night-mode {
     /* Night mode styles */
   }
 
-body .places {
+body .content {
+    margin-top: 100px;
+    text-align: center;
+    width: 75%;
+    float: left;
+}
+
+body .mb3 {
     margin-top: 100px;
     text-align: center;
     width: 75%;

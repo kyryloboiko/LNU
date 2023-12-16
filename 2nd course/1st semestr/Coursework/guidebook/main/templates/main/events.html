@@ -5,6 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Events page</h1>
-    <p>Events page</p>
+    <div class="content">
+        <h1>Events page</h1>
+        
+        {% for event in events %}
+            <a href="{% url 'event-detail' event.id %}">
+                <div>
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.owner }}</p>
+                    <p>{{ event.description }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}

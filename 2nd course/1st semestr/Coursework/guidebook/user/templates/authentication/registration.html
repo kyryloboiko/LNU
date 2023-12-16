@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    <title>Registration</title>
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Сталася помилка в обробці ваших даних</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}
+
+    <h1>Registration</h1>
+<br/><br/>
+        <form class="content" action="{% url 'registration' %}" method="post">
+            {% csrf_token %}
+            
+            {{ form.as_p}}
+
+            <br/><br/>
+            <input type="submit"
+            value="Submit"
+            class="btn btn-secondary">
+        
+        </form>
+<br/><br/>
+{% endblock %}
