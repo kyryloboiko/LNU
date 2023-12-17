@@ -1,10 +1,18 @@
 from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.utils import timezone
 from django.db import models
 
+class CustomUser(AbstractUser):
+    date_of_birth = models.DateField(null=True, blank=True)
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    ]
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
 
 class Place(models.Model):
     name = models.CharField('Назва', max_length=255)
@@ -26,7 +34,7 @@ class Place(models.Model):
     
 class Event(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField('Назва', max_length=255)
     type = models.CharField('Тип', max_length=255, default='Не вказано')
     description = models.TextField('Опис')
@@ -45,7 +53,7 @@ class Event(models.Model):
     
 class Review(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     review = models.TextField('Відгук')
     score = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     
@@ -65,7 +73,7 @@ class Review(models.Model):
         return f"{self.user.username} review for {self.place.name}"
     
 class Attendance(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     datetime = models.DateTimeField('Дата та час')
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)

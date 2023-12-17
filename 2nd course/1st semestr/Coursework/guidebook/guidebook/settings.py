@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap_datepicker_plus',
     'main',
     'user',
     'django.contrib.admin',
@@ -86,6 +87,9 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+
+
+AUTH_USER_MODEL = 'main.CustomUser'
 
 
 AUTH_PASSWORD_VALIDATORS = [
