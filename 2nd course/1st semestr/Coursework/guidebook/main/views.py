@@ -3,6 +3,7 @@ from .models import Attendance, Place, Event, Review
 from datetime import datetime
 from django.utils import timezone
 from .forms import EventForm
+from .forms import ReviewForm
 # Create your views here.
 
 
@@ -45,9 +46,17 @@ def places_page(request):
     return render(request, 'main/places.html', {'places': places})
 
 def place_detail(request, place_id):
-    place = get_object_or_404(Place, id=place_id)
-    # Тут можна передати додаткові дані у шаблон, якщо потрібно
-    return render(request, 'main/place_detail.html', {'place': place})
+    place = Place.objects.get(id=place_id)
+    form = ReviewForm(request.POST or None)
+    
+    if request.method == 'POST' and form.is_valid():
+        review = form.save(commit=False)
+        review.place = place
+        review.user = request.user  # Запис користувача, який залишив відгук
+        review.save()
+        return redirect('place-detail', place_id=place.id)
+    
+    return render(request, 'main/place_detail.html', {'place': place, 'form': form})
 
 def events_page(request):
     events = Event.objects.all()

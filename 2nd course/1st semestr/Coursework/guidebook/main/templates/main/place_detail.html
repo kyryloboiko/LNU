@@ -16,6 +16,13 @@
                         <h5 class="card-title">{{ place.name }}</h5>
                         <p class="card-text">{{ place.description }}</p>
                         <p class="card-text"><small class="text-body-secondary">Average Review Score: {{ place.average_review_score }}</small></p>
+                        {% if user.is_authenticated %}
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit">Додати відгук</button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
