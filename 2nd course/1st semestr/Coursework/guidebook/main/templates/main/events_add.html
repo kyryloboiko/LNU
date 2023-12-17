@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    <title>{{ event.name }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Додати подію</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,6 +1,10 @@
+from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
+from django.utils import timezone
+from django.db import models
+
 
 class Place(models.Model):
     name = models.CharField('Назва', max_length=255)
@@ -8,9 +12,9 @@ class Place(models.Model):
     type = models.CharField('Тип', max_length=255)
     average_review_score = models.FloatField('Середня оцінка відгуків', default=0)
     description = models.TextField('Опис')
-    country = models.CharField('Країна', max_length=255)
-    region = models.CharField('Регіон, область', max_length=255)
-    city = models.CharField('Місто, населений пункт', max_length=255)
+    country = models.CharField('Країна', max_length=255, default='Україна')
+    region = models.CharField('Регіон, область', max_length=255, default='Львівська область')
+    city = models.CharField('Місто, населений пункт', max_length=255, default='Львів')
     latitude = models.FloatField('Широта', default=0)
     longitude = models.FloatField('Довгота', default=0)
     total_reviews = models.IntegerField('Кількість відгуків', default=0)
@@ -24,16 +28,16 @@ class Event(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField('Назва', max_length=255)
-    type = models.CharField('Тип', max_length=255, default='type')
+    type = models.CharField('Тип', max_length=255, default='Не вказано')
     description = models.TextField('Опис')
-    datetime_start = models.DateTimeField('Дата та час початку')
-    datetime_end = models.DateTimeField('Дата та час закінчення')
-    country = models.CharField('Країна', max_length=255, default='Country')
-    region = models.CharField('Регіон, область', max_length=255, default='Region')
-    city = models.CharField('Місто, населений пункт', max_length=255, default='City')
+    datetime_start = models.DateTimeField('Дата та час початку', default=timezone.now)
+    datetime_end = models.DateTimeField('Дата та час закінчення', default=timezone.now)
+    country = models.CharField('Країна', max_length=255, default='Україна')
+    region = models.CharField('Регіон, область', max_length=255, default='Львівська область')
+    city = models.CharField('Місто, населений пункт', max_length=255, default='Львів')
     latitude = models.FloatField('Широта', default=0)
     longitude = models.FloatField('Довгота', default=0)
-    guests = models.TextField('Гості')
+    guests = models.TextField('Гості', default=' ')
     image = models.ImageField(upload_to='images/event/', default='default.jpg')
 
     def __str__(self):
@@ -41,7 +45,6 @@ class Event(models.Model):
     
 class Review(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.TextField('Відгук')
     score = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])

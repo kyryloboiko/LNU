@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Attendance, Place, Event, Review
 from datetime import datetime
 from django.utils import timezone
+from .forms import EventForm
 # Create your views here.
 
 
@@ -85,14 +86,19 @@ def events_page(request):
 
     return render(request, 'main/events.html', {'events': events})
 
+def events_add(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.owner = request.user  # Передача авторизованого користувача до поля owner
+            event.save()
+            return redirect('event-detail', event_id=event.id)
+    else:
+        form = EventForm(initial={'owner': request.user})  # Початкове значення для поля owner
+        form.fields['owner'].disabled = True  # Робимо поле owner неактивним
 
-    # Сортувати заходи за датою початку
-    if sort_by == 'ascending':
-        events = events.order_by('datetime_start')
-    elif sort_by == 'descending':
-        events = events.order_by('-datetime_start')
-
-    return render(request, 'main/events.html', {'events': events})
+    return render(request, 'main/events_add.html', {'form': form})
 
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
