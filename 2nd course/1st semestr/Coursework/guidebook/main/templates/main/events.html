@@ -7,15 +7,54 @@
 {% block content %}
     <div class="content">
         <h1>Events page</h1>
+        <form action="{% url 'events' %}" method="get">
+            <p>
+                <input type="text" id="search" name="search" placeholder="Пошук">
+            </p>
+            <p>
+                <label for="county">Країна:</label>
+                <input type="text" id="county" name="county">
+                <label for="city">Місто:</label>
+                <input type="text" id="city" name="city">
+            </p>
+
+            <p>
+                <label for="region">Регіон:</label>
+                <input type="text" id="region" name="region">
+                <label for="type">Тип:</label>
+                <input type="text" id="type" name="type">
+            </p>
+
+            <label for="order_by">Сортувати за:</label>
+            <select id="order_by" name="order_by">
+                <option value="asc">найшвидчими подіями</option>
+                <option value="desc">найпізнішими подіями</option>
+            </select>
         
-        {% for event in events %}
-            <a href="{% url 'event-detail' event.id %}">
-                <div>
-                    <h3>{{ event.name }}</h3>
-                    <p>{{ event.owner }}</p>
-                    <p>{{ event.description }}</p>
+            <button type="submit">Застосувати фільтр</button>
+        </form>
+        <div class="row">
+            {% for event in events %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <a href="{% url 'event-detail' event.id %}">
+                            <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.name }}">
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'event-detail' event.id %}">
+                                <h5 class="card-title">{{ event.name }}</h5>
+                            </a>
+                            <p class="card-text">{{ event.description }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <a href="{% url 'place-detail' event.place.id %}">
+                                <li class="list-group-item">Place: {{ event.place }}</li>
+                            </a>
+                            <li class="list-group-item">Організатор: {{ event.owner }}</li>
+                        </ul>
+                    </div>
                 </div>
-            </a>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -15,7 +15,7 @@ class Place(models.Model):
     longitude = models.FloatField('Довгота', default=0)
     total_reviews = models.IntegerField('Кількість відгуків', default=0)
     total_score = models.IntegerField('Загальна оцінка', default=0)
-    image = models.ImageField(upload_to='static/main/img/place/', default='default.jpg')
+    image = models.ImageField(upload_to='main/static/main/img/place/', default='default.jpg')
 
     def __str__(self):
         return self.name
@@ -24,13 +24,17 @@ class Event(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField('Назва', max_length=255)
+    type = models.CharField('Тип', max_length=255, default='type')
     description = models.TextField('Опис')
     datetime_start = models.DateTimeField('Дата та час початку')
     datetime_end = models.DateTimeField('Дата та час закінчення')
+    country = models.CharField('Країна', max_length=255, default='Country')
+    region = models.CharField('Регіон, область', max_length=255, default='Region')
+    city = models.CharField('Місто, населений пункт', max_length=255, default='City')
     latitude = models.FloatField('Широта', default=0)
     longitude = models.FloatField('Довгота', default=0)
     guests = models.TextField('Гості')
-    image = models.ImageField(upload_to='static/main/img/event/', default='default.jpg')
+    image = models.ImageField(upload_to='main/static/main/img/event/', default='default.jpg')
 
     def __str__(self):
         return self.name

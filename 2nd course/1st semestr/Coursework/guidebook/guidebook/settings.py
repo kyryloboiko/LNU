@@ -126,6 +126,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "main/static",
 ]
 
+MEDIA_URL = ''  # URL для доступу до файлів медіа
+MEDIA_ROOT = [
+    BASE_DIR / "main/static",
+]  # Шлях до папки з файлами медіа
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
