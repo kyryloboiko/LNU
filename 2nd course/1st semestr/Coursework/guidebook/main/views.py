@@ -11,7 +11,7 @@ def places_page(request):
     places = Place.objects.all()
 
     # Отримання параметрів фільтрації з URL
-    county = request.GET.get('county')
+    country = request.GET.get('country')
     city = request.GET.get('city')
     region = request.GET.get('region')
     kind = request.GET.get('kind')
@@ -22,8 +22,8 @@ def places_page(request):
     search = request.GET.get('search')  # Параметр пошуку по назві
 
     # Фільтрація за параметрами, якщо вони існують
-    if county:
-        places = places.filter(county=county)
+    if country:
+        places = places.filter(country=country)
     if city:
         places = places.filter(city=city)
     if region:
@@ -48,32 +48,32 @@ def places_page(request):
 def place_detail(request, place_id):
     place = Place.objects.get(id=place_id)
     form = ReviewForm(request.POST or None)
-    
+    latest_reviews = Review.objects.filter(place=place).order_by('-id')[:10]
+
     if request.method == 'POST' and form.is_valid():
         review = form.save(commit=False)
         review.place = place
-        review.user = request.user  # Запис користувача, який залишив відгук
+        review.user = request.user  # Зберігаємо авторизованого користувача
         review.save()
-        return redirect('place-detail', place_id=place.id)
-    
-    return render(request, 'main/place_detail.html', {'place': place, 'form': form})
+        return redirect('place-detail', place_id=place_id)
+
+    return render(request, 'main/place_detail.html', {'place': place, 'latest_reviews': latest_reviews, 'form': form})
 
 def events_page(request):
     events = Event.objects.all()
 
     # Отримання параметрів фільтрації з URL
-    county = request.GET.get('county')
+    country = request.GET.get('country')
     city = request.GET.get('city')
     region = request.GET.get('region')
     type = request.GET.get('type')
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
-    order_by = request.GET.get('order_by')  # Може бути 'asc' або 'desc'
-    search = request.GET.get('search')  # Параметр пошуку по назві
+    order_by = request.GET.get('order_by')
+    search = request.GET.get('search')
 
-    # Фільтрація за параметрами, якщо вони існують
-    if county:
-        events = events.filter(place__county=county)
+    if country:
+        events = events.filter(place__country=country)
     if city:
         events = events.filter(place__city=city)
     if region:
@@ -84,14 +84,13 @@ def events_page(request):
         events = events.filter(datetime_start__gte=start_date)
     if end_date:
         events = events.filter(datetime_end__lte=end_date)
-    if search:  # Пошук по назві
+    if search:
         events = events.filter(name__icontains=search)
 
-    # Сортування результатів, якщо вказано порядок сортування
-    if order_by == 'asc':
-        events = events.order_by('datetime_start')
-    elif order_by == 'desc':
+    if order_by == 'desc':
         events = events.order_by('-datetime_start')
+    elif order_by == 'asc':
+        events = events.order_by('datetime_start')
 
     return render(request, 'main/events.html', {'events': events})
 

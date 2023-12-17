@@ -62,7 +62,7 @@ class Review(models.Model):
         place.save()
 
     def __str__(self):
-        return self.user + "review"
+        return f"{self.user.username} review for {self.place.name}"
     
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
