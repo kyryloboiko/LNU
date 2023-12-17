@@ -15,7 +15,7 @@ class Place(models.Model):
     longitude = models.FloatField('Довгота', default=0)
     total_reviews = models.IntegerField('Кількість відгуків', default=0)
     total_score = models.IntegerField('Загальна оцінка', default=0)
-    image = models.ImageField(upload_to='main/static/main/img/place/', default='default.jpg')
+    image = models.ImageField(upload_to='images/place/', default='default.jpg')
 
     def __str__(self):
         return self.name
@@ -34,7 +34,7 @@ class Event(models.Model):
     latitude = models.FloatField('Широта', default=0)
     longitude = models.FloatField('Довгота', default=0)
     guests = models.TextField('Гості')
-    image = models.ImageField(upload_to='main/static/main/img/event/', default='default.jpg')
+    image = models.ImageField(upload_to='images/event/', default='default.jpg')
 
     def __str__(self):
         return self.name
