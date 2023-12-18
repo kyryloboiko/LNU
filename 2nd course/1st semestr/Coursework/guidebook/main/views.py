@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Attendance, Place, Event, Review
+from .models import Place, Event, Review
 from datetime import datetime
 from django.utils import timezone
 from .forms import EventForm

@@ -27,7 +27,7 @@ class CustomUserCreationForm(UserCreationForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['place', 'owner', 'name', 'type', 'description', 'datetime_start', 'datetime_end', 'country', 'region', 'city', 'latitude', 'longitude', 'guests', 'image']
+        fields = ['place', 'owner', 'name', 'type', 'description', 'datetime_start', 'datetime_end', 'country', 'region', 'city', 'latitude', 'longitude', 'image']
         # Упевніться, що поля відображають усі необхідні поля вашої моделі
 
 class ReviewForm(forms.ModelForm):

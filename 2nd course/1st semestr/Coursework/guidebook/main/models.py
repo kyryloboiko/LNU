@@ -45,7 +45,6 @@ class Event(models.Model):
     city = models.CharField('Місто, населений пункт', max_length=255, default='Львів')
     latitude = models.FloatField('Широта', default=0)
     longitude = models.FloatField('Довгота', default=0)
-    guests = models.TextField('Гості', default=' ')
     image = models.ImageField(upload_to='images/event/', default='default.jpg')
 
     def __str__(self):
@@ -71,12 +70,3 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.user.username} review for {self.place.name}"
-    
-class Attendance(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    datetime = models.DateTimeField('Дата та час')
-    place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.user + "attended"
