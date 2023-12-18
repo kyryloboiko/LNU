@@ -43,11 +43,6 @@
                             <label for="type">Тип:</label>
                             <input type="text" name="type">
                         </p>
-                        <!--<p>
-                            <input type="number" step="0.1" name="min_score" placeholder="Мінімальна оцінка">
-                            <input type="number" step="0.1" name="max_score" placeholder="Максимальна оцінка">
-                        </p>-->
-                        <!-- Сортування -->
                         <select name="order_by">
                             <option value="desc">Сортувати за більшою оцінкою</option>
                             <option value="asc">Сортувати за меншою оцінки</option>
@@ -71,7 +66,8 @@
                             <a href="{% url 'place-detail' place.id %}">
                                 <h5 class="card-title">{{ place.name }}</h5>
                             </a>
-                            <p class="card-text">{{ place.description }}</p>
+                            <p class="card-text"><small>{{ place.type }}</small></p>
+                            <p class="card-text">{{ place.country }}, {{ place.region }}, {{ place.city }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Оцінка: {{ place.average_review_score }}</li>

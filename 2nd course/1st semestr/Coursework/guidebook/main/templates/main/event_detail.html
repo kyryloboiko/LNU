@@ -13,7 +13,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{ event.name }}</h5>
+                        <h3 class="card-title">{{ event.name }}</h3>
+                        <a href="{% url 'place-detail' event.place.id %}"><h6 class="card-title">{{ event.place.name }}</h6></a>
+                        <p class="card-text">{{ event.country }}, {{ event.region }}, {{ event.city }}</p>
+                        <p class="card-text"><small>{{ event.type }}</small></p>
                         <p class="card-text">{{ event.description }}</p>
                         <p class="card-text"><small class="text-body-secondary">Організатор: {{ event.owner }}</small></p>
                     </div>

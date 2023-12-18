@@ -7,15 +7,13 @@
     <main>
         <div class="content">
         <h1>User Profile</h1>
-            <!-- Інформація про користувача -->
             <p>Username: {{ user.username }}</p>
             <p>Email: {{ user.email }}</p>
-            <!-- Додаткові дані про користувача -->
-            <!-- Наприклад, інформація з моделі UserProfile -->
             <p>First Name: {{ user.profile.first_name }}</p>
             <p>Last Name: {{ user.profile.last_name }}</p>
-            <p>Location: {{ user.profile.location }}</p>
-            <!-- ... -->
+            <p>Date of birth: {{ user.profile.date_of_birth }}</p>
+            <p>Gender: {{ user.profile.gender }}</p>
+            <p>Registration Date: {{ user.profile.date_joined }}</p>
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Logout</button>
