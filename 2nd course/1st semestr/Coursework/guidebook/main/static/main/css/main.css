@@ -97,3 +97,7 @@ body .mb3 {
     width: 75%;
     float: left;
 }
+
+body .col-md-4-mb-4 {
+    width: 20%;
+}
