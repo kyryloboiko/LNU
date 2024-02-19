@@ -1,15 +1,16 @@
 '''
 ui_template
 ┏━━━┳━━━┳━━━┓
-┃ X │ O │ · ┃
+┃ X │ O │   ┃
 ┣───┼───┼───┫
-┃ · │ X │ O ┃
+┃   │ X │ O ┃
 ┣───┼───┼───┫
-┃ · │ · │ X ┃
+┃   │   │ X ┃
 ┗━━━┻━━━┻━━━┛
 '''
 #Карта сітки (поле та значення в ньому) || Grid map (field and values in it)
-map = {(0,0):'·',(0,1):'·',(0,2):'·',(1,0):'·',(1,1):'·',(1,2):'·',(2,0):'·',(2,1):'·',(2,2):'·'}
+void_attribute = ' '
+map = {(0,0):void_attribute,(0,1):void_attribute,(0,2):void_attribute,(1,0):void_attribute,(1,1):void_attribute,(1,2):void_attribute,(2,0):void_attribute,(2,1):void_attribute,(2,2):void_attribute}
 
 #Шаблон роздільних ліній сітки || Grid dividing lines template
 top_game_lane = '┏━━━┳━━━┳━━━┓'
@@ -18,7 +19,7 @@ middle_game_lane = '┣───┼───┼───┫'
 
 #Шаблон відображення полів атрибутів || Attribute field display template
 def attributes_game_lane(cell_a, cell_b, cell_c):
-    result = '┃ ' + map.get(cell_a, ' ') + ' │ ' + map.get(cell_b, ' ') + ' │ ' + map.get(cell_c, ' ') + ' ┃'
+    result = '┃ ' + map.get(cell_a, void_attribute) + ' │ ' + map.get(cell_b, void_attribute) + ' │ ' + map.get(cell_c, void_attribute) + ' ┃'
     return result
 
 #Відображення сітки гри || Displaying the game grid
@@ -34,7 +35,7 @@ def show_ui():
 #Перевірка чи залишились пусті клітинки || Checking for empty cells
 def draw_check():
     for value in map.values():
-        if value == '·':
+        if value == void_attribute:
             return True
     return False
 
@@ -49,7 +50,7 @@ def win_check():
                             [(0,0),(1,1),(2,2)],
                             [(0,2),(1,1),(2,0)]]
     for i in winning_combinations:
-        if map.get(i[0]) == map.get(i[1]) == map.get(i[2]) and map.get(i[0]) != '·':
+        if map.get(i[0]) == map.get(i[1]) == map.get(i[2]) and map.get(i[0]) != void_attribute:
             winner = map.get(i[0])
             print('Winner is ' + winner + '. Game over!')
             return False
@@ -59,7 +60,10 @@ def win_check():
 def x_turn():
     input_cell_array = [int(i)
         for i in input("X turn, type row and column number across a space: ").split()]
-    if map[(input_cell_array[0]-1,input_cell_array[1]-1)] == '·':
+    while len(input_cell_array) != 2:
+            input_cell_array = [int(i)
+                for i in input("X turn, type row and column number across a space: ").split()]
+    if map[(input_cell_array[0]-1,input_cell_array[1]-1)] == void_attribute:
         x_append(input_cell_array[0]-1,input_cell_array[1]-1)
     else: 
         print('The cell is already occupied!!!')
@@ -67,14 +71,17 @@ def x_turn():
 
 #Додавання хрестика в клітинку || Adding a cross to a cell
 def x_append(row, column):
-    if map[(row, column)] == '·':
+    if map[(row, column)] == void_attribute:
         map[(row, column)] = 'X'
 
 #Хід нуликів || Turn of the zero
 def o_turn():
     input_cell_array = [int(i)
         for i in input("O turn, type row and column number across a space: ").split()]
-    if map[(input_cell_array[0]-1,input_cell_array[1]-1)] == '·':
+    while len(input_cell_array) != 2:
+        input_cell_array = [int(i)
+            for i in input("O turn, type row and column number across a space: ").split()]
+    if map[(input_cell_array[0]-1,input_cell_array[1]-1)] == void_attribute:
         o_append(input_cell_array[0]-1,input_cell_array[1]-1)
     else: 
         print('The cell is already occupied!!!')
@@ -82,7 +89,7 @@ def o_turn():
  
 #Додавання нулика в клітинку || Adding a zero to a cell
 def o_append(row, column):
-    if map[(row, column)] == '·':
+    if map[(row, column)] == void_attribute:
         map[(row, column)] = 'O'    
 
 #Життєвий цикл гри || Game life cycle
