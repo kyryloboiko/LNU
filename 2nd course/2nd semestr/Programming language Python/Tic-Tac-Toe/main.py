@@ -41,14 +41,17 @@ def draw_check():
 
 #Перевірка чи є переможні комбінації || Checking for winning combinations
 def win_check():
-    winning_combinations = [[(0,0),(0,1),(0,2)],
-                            [(1,0),(1,1),(1,2)],
-                            [(2,0),(2,1),(2,2)],
-                            [(0,0),(1,0),(2,0)],
-                            [(0,1),(1,1),(2,1)],
-                            [(0,2),(1,2),(2,2)],
-                            [(0,0),(1,1),(2,2)],
-                            [(0,2),(1,1),(2,0)]]
+    winning_combinations = []
+    for i in range(3):
+        #Горизонтальні комбінації || Horizontal combinations
+        winning_combinations.append([(i, 0), (i, 1), (i, 2)])
+        #Вертикальні комбінації || Vertical combinations
+        winning_combinations.append([(0, i), (1, i), (2, i)])
+
+    #Діагональні комбінації || Diagonal combinations
+    winning_combinations.append([(0, 0), (1, 1), (2, 2)])
+    winning_combinations.append([(0, 2), (1, 1), (2, 0)])
+
     for i in winning_combinations:
         if map.get(i[0]) == map.get(i[1]) == map.get(i[2]) and map.get(i[0]) != void_attribute:
             winner = map.get(i[0])
