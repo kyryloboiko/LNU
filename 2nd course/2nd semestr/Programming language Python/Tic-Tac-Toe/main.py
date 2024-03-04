@@ -8,6 +8,13 @@ ui_template
 ┃   │   │ X ┃
 ┗━━━┻━━━┻━━━┛
 '''
+import os
+
+
+# Clear terminal function
+def clear_terminal():
+    return os.system('cls' if os.name == 'nt' else 'clear')
+
 # Grid map (field and values in it)
 void_attribute = ' '
 grid_map = {(row, col): void_attribute for row in range(3) for col in range(3)}
@@ -71,11 +78,13 @@ def append_to_cell(row, column, player):
 # Game life cycle
 game = True
 while game:
+    clear_terminal()
     show_ui()
     game = win_check()
     if not game:
         break
     player_turn('X')
+    clear_terminal()
     show_ui()
     if not draw_check():
         print("Draw. Game over <3")
