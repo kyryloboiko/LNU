@@ -5,8 +5,8 @@ from abc import ABC, abstractmethod
 def clear_terminal():
     return os.system('cls' if os.name == 'nt' else 'clear')
 
-def move():
-    pass
+def move(player: str, position_from: tuple, position_to: tuple):
+    map = Board.get_map(Board)
 
 class Game(ABC):
     def start(self):
@@ -29,91 +29,32 @@ class Board(Game):
     map_symbols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     map_numbers = ['1', '2', '3', '4', '5', '6', '7', '8']
     empty_space = ' '  # Clearer naming for empty space representation
-    map = {symbol + number: ' ' for symbol in map_symbols for number in ['1', '2', '3', '4', '5', '6', '7', '8']}
-    
+    map = {(symbol + number): ' ' for symbol in map_symbols for number in ['1', '2', '3', '4', '5', '6', '7', '8']}
+
     def __init__(self):
         """Creates the map initiation array with all positions for objects."""
-        init_positions = {Pawn: [symbol + number for number in ['2', '7'] for symbol in self.map_symbols],
-                          Rook: [symbol + number for number in ['1', '8'] for symbol in ['a','h']],
-                          Knight: [symbol + number for number in ['1', '8'] for symbol in ['b','g']],
-                          Bishop: [symbol + number for number in ['1', '8'] for symbol in ['c','f']],
-                          Queen: [symbol + number for number in ['1', '8'] for symbol in ['d']],
-                          King: [symbol + number for number in ['1', '8'] for symbol in ['e']]}
+        self.init_positions = {
+            Pawn: [(symbol + number) for number in ['2', '7'] for symbol in self.map_symbols],
+            Rook: [(symbol + number) for number in ['1', '8'] for symbol in ['a', 'h']],
+            Knight: [(symbol + number) for number in ['1', '8'] for symbol in ['b', 'g']],
+            Bishop: [(symbol + number) for number in ['1', '8'] for symbol in ['c', 'f']],
+            Queen: [(symbol + number) for number in ['1', '8'] for symbol in ['d']],
+            King: [(symbol + number) for number in ['1', '8'] for symbol in ['e']]
+        }
 
-        '''White team generation'''
-        #Pawn
-        for i, position in enumerate(init_positions.get(Pawn)[0:8]):
-            pawn_name = f"pawn_{i+1}"  # Використання f-string для форматування індексу
-            pawn = Pawn(position=position, color='white')
-            setattr(self, pawn_name, pawn)  # Використання setattr() для створення атрибута
-            
-        #Rook
-        for i, position in enumerate(init_positions.get(Rook)[0:2]):
-            rook_name = f"rook_{i+1}"  # Використання f-string для форматування індексу
-            rook = Rook(position=position, color='white')
-            setattr(self, rook_name, rook)  # Використання setattr() для створення атрибута
-            
-        #Knight
-        for i, position in enumerate(init_positions.get(Knight)[0:2]):
-            knight_name = f"knight_{i+1}"  # Використання f-string для форматування індексу
-            knight = Knight(position=position, color='white')
-            setattr(self, knight_name, knight)  # Використання setattr() для створення атрибута
-            
-        #Bishop
-        for i, position in enumerate(init_positions.get(Bishop)[0:2]):
-            bishop_name = f"bishop_{i+1}"  # Використання f-string для форматування індексу
-            bishop = Bishop(position=position, color='white')
-            setattr(self, bishop_name, bishop)  # Використання setattr() для створення атрибута
-            
-        #Queen  
-        for i, position in enumerate(init_positions.get(Queen)[0:1]):
-            queen_name = f"queen_{i+1}"  # Використання f-string для форматування індексу
-            queen = Queen(position=position, color='white')
-            setattr(self, queen_name, queen)  # Використання setattr() для створення атрибута
-            
-        #King
-        for i, position in enumerate(init_positions.get(King)[0:1]):
-            king_name = f"king_{i+1}"  # Використання f-string для форматування індексу
-            king = King(position=position, color='white')
-            setattr(self, king_name, king)  # Використання setattr() для створення атрибута
-            
-            
-        '''Black team generation'''
-        #Pawn
-        for i, position in enumerate(init_positions.get(Pawn)[8:16]):
-            pawn_name = f"pawn_{i+8+1}"
-            pawn = Pawn(position=position, color='black')
-            setattr(self, pawn_name, pawn)
-            
-        #Rook
-        for i, position in enumerate(init_positions.get(Rook)[2:4]):
-            rook_name = f"rook_{i+2+1}"  # Використання f-string для форматування індексу
-            rook = Rook(position=position, color='black')
-            setattr(self, rook_name, rook)  # Використання setattr() для створення атрибута
-            
-        #Knight
-        for i, position in enumerate(init_positions.get(Knight)[2:4]):
-            knight_name = f"knight_{i+2+1}"  # Використання f-string для форматування індексу
-            knight = Knight(position=position, color='black')
-            setattr(self, knight_name, knight)  # Використання setattr() для створення атрибута
-            
-        #Bishop
-        for i, position in enumerate(init_positions.get(Bishop)[2:4]):
-            bishop_name = f"bishop_{i+2+1}"  # Використання f-string для форматування індексу
-            bishop = Bishop(position=position, color='black')
-            setattr(self, bishop_name, bishop)  # Використання setattr() для створення атрибута
-            
-        #Queen  
-        for i, position in enumerate(init_positions.get(Queen)[1:2]):
-            queen_name = f"queen_{i+1+1}"  # Використання f-string для форматування індексу
-            queen = Queen(position=position, color='black')
-            setattr(self, queen_name, queen)  # Використання setattr() для створення атрибута
-            
-        #King
-        for i, position in enumerate(init_positions.get(King)[1:2]):
-            king_name = f"king_{i+1+1}"  # Використання f-string для форматування індексу
-            king = King(position=position, color='black')
-            setattr(self, king_name, king)  # Використання setattr() для створення атрибута
+        self.setup_pieces()
+
+    def setup_pieces(self):
+        """Creates and places pieces on the board."""
+        for piece_type, positions in self.init_positions.items():
+            for i, position in enumerate(positions):
+                piece_name = f"{piece_type.__name__.lower()}_{i + 1}"
+                num_pieces_per_color = len(self.init_positions[piece_type]) // 2  # Assuming Pawn is the reference piece type
+                piece_color = 'white' if i < num_pieces_per_color else 'black'
+                piece = piece_type(position=position, color=piece_color)
+                setattr(self, piece_name, piece)
+
+
         
 
     def get_board(self):
@@ -202,20 +143,22 @@ class Pawn(Piece):
     def move(self, result_position):
         if self.move_on_map_validation(result_position) and self.move_validation(result_position):
             self.position = result_position
-        else: raise ValueError('It is not possible to move to this position')
+            return True 
+        else:
+            return False
     
     def move_validation(self, result_position):
         expected_positions = []
         if self.color == 'white':
             if self.position[1] == '2':
-                expected_positions += [self.position[0] + number for number in range(3,4)]
+                expected_positions += [(self.position[0] + number) for number in range(3,4)]
             elif self.position[1] is not '8':
-                expected_positions += [str(int(self.position[1]) + 1)]
+                expected_positions += [(str(int(self.position[1]) + 1))]
         elif self.color == 'black':
             if self.position[1] == '7':
-                expected_positions += [self.position[0] + number for number in range(5,6)]
+                expected_positions += [(self.position[0] + number) for number in range(5,6)]
             elif self.position[1] is not '1':
-                expected_positions += [str(int(self.position[1]) - 1)]
+                expected_positions += [(str(int(self.position[1]) - 1))]
         else: raise ValueError("Piece's color not defined, or defined incorrectly")
                 
         if result_position in expected_positions:
@@ -250,14 +193,14 @@ class Rook(Piece):
         expected_positions = []
         if self.color == 'white':
             if self.position[1] == '2':
-                expected_positions += [self.position[0] + number for number in range(3,4)]
-            else:
-                expected_positions += [str(int(self.position[1]) + 1)]
+                expected_positions += [(self.position[0] + number) for number in range(3,4)]
+            elif self.position[1] is not '8':
+                expected_positions += [(str(int(self.position[1]) + 1))]
         elif self.color == 'black':
             if self.position[1] == '7':
-                expected_positions += [self.position[0] + number for number in range(5,6)]
-            else:
-                expected_positions += [str(int(self.position[1]) - 1)]
+                expected_positions += [(self.position[0] + number) for number in range(5,6)]
+            elif self.position[1] is not '1':
+                expected_positions += [(str(int(self.position[1]) - 1))]
         else: raise ValueError("Piece's color not defined, or defined incorrectly")
                 
         if result_position in expected_positions:
@@ -292,14 +235,14 @@ class Knight(Piece):
         expected_positions = []
         if self.color == 'white':
             if self.position[1] == '2':
-                expected_positions += [self.position[0] + number for number in range(3,4)]
-            else:
-                expected_positions += [str(int(self.position[1]) + 1)]
+                expected_positions += [(self.position[0] + number) for number in range(3,4)]
+            elif self.position[1] is not '8':
+                expected_positions += [(str(int(self.position[1]) + 1))]
         elif self.color == 'black':
             if self.position[1] == '7':
-                expected_positions += [self.position[0] + number for number in range(5,6)]
-            else:
-                expected_positions += [str(int(self.position[1]) - 1)]
+                expected_positions += [(self.position[0] + number) for number in range(5,6)]
+            elif self.position[1] is not '1':
+                expected_positions += [(str(int(self.position[1]) - 1))]
         else: raise ValueError("Piece's color not defined, or defined incorrectly")
                 
         if result_position in expected_positions:
@@ -334,14 +277,14 @@ class Bishop(Piece):
         expected_positions = []
         if self.color == 'white':
             if self.position[1] == '2':
-                expected_positions += [self.position[0] + number for number in range(3,4)]
-            else:
-                expected_positions += [str(int(self.position[1]) + 1)]
+                expected_positions += [(self.position[0] + number) for number in range(3,4)]
+            elif self.position[1] is not '8':
+                expected_positions += [(str(int(self.position[1]) + 1))]
         elif self.color == 'black':
             if self.position[1] == '7':
-                expected_positions += [self.position[0] + number for number in range(5,6)]
-            else:
-                expected_positions += [str(int(self.position[1]) - 1)]
+                expected_positions += [(self.position[0] + number) for number in range(5,6)]
+            elif self.position[1] is not '1':
+                expected_positions += [(str(int(self.position[1]) - 1))]
         else: raise ValueError("Piece's color not defined, or defined incorrectly")
                 
         if result_position in expected_positions:
@@ -376,14 +319,14 @@ class Queen(Piece):
         expected_positions = []
         if self.color == 'white':
             if self.position[1] == '2':
-                expected_positions += [self.position[0] + number for number in range(3,4)]
-            else:
-                expected_positions += [str(int(self.position[1]) + 1)]
+                expected_positions += [(self.position[0] + number) for number in range(3,4)]
+            elif self.position[1] is not '8':
+                expected_positions += [(str(int(self.position[1]) + 1))]
         elif self.color == 'black':
             if self.position[1] == '7':
-                expected_positions += [self.position[0] + number for number in range(5,6)]
-            else:
-                expected_positions += [str(int(self.position[1]) - 1)]
+                expected_positions += [(self.position[0] + number) for number in range(5,6)]
+            elif self.position[1] is not '1':
+                expected_positions += [(str(int(self.position[1]) - 1))]
         else: raise ValueError("Piece's color not defined, or defined incorrectly")
                 
         if result_position in expected_positions:
@@ -418,21 +361,19 @@ class King(Piece):
         expected_positions = []
         if self.color == 'white':
             if self.position[1] == '2':
-                expected_positions += [self.position[0] + number for number in range(3,4)]
-            else:
-                expected_positions += [str(int(self.position[1]) + 1)]
+                expected_positions += [(self.position[0] + number) for number in range(3,4)]
+            elif self.position[1] is not '8':
+                expected_positions += [(str(int(self.position[1]) + 1))]
         elif self.color == 'black':
             if self.position[1] == '7':
-                expected_positions += [self.position[0] + number for number in range(5,6)]
-            else:
-                expected_positions += [str(int(self.position[1]) - 1)]
+                expected_positions += [(self.position[0] + number) for number in range(5,6)]
+            elif self.position[1] is not '1':
+                expected_positions += [(str(int(self.position[1]) - 1))]
         else: raise ValueError("Piece's color not defined, or defined incorrectly")
                 
         if result_position in expected_positions:
             return True
-        elif result_position not in expected_positions:
-            return False
-        else: raise Exception('Unepxected issue in this validation')
+        else: return False
         
 
 game = Game()
