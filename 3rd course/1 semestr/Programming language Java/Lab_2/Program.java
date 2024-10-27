@@ -13,6 +13,8 @@ public class Program {
 
         double R = Math.pow(x, 2) * (x + 1) / (b - Math.pow(Math.sin(x + a), 2));
         System.out.println("R = " + R);
+
+        sc.close();
     }
 
 }

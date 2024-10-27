@@ -20,5 +20,7 @@ public class Program {
             }
         }
         System.out.println("The number of positive elements in the array is: " + counter);
+        
+        sc.close();
     }    
 }
