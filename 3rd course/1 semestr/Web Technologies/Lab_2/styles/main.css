@@ -31,7 +31,8 @@ nav a:hover {
 }
 
 /* Заголовки */
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
@@ -58,7 +59,9 @@ form {
     margin: 0 auto;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -101,6 +104,8 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fff; /* Змініть колір фону за потреби */
-    z-index: 999; /* Забезпечує, щоб навігація була поверх іншого контенту */
-  }
+    background-color: #fff;
+    /* Змініть колір фону за потреби */
+    z-index: 999;
+    /* Забезпечує, щоб навігація була поверх іншого контенту */
+}

@@ -7,7 +7,7 @@ public class Module1 {
 
         // 2
         System.out.println("2:");
-        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         for (int i = numbers.length - 1; i >= 0; i--) {
             System.out.print(numbers[i] + " ");
         }

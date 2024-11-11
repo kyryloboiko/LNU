@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.datetime-block {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.admin-form,
+.registration-form {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input.error {
+    border-color: #ff0000;
+}
+
+.error {
+    color: #ff0000;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: block;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.participants-list {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.participant-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.participant-visited {
+    background-color: #e8f5e9;
+}
+
+.participant-not-visited {
+    background-color: #ffebee;
+}
+
+.attendance-buttons {
+    margin-top: 10px;
+}
+
+.btn-visited {
+    background-color: #4CAF50;
+    margin-right: 5px;
+}
+
+.btn-not-visited {
+    background-color: #f44336;
+    margin-right: 5px;
+}
+
+.btn-delete {
+    background-color: #ff5722;
+}
