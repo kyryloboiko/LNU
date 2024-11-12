@@ -1,16 +1,16 @@
 const age = prompt("Enter your age:");
 
 if (!isNaN(age) && age !== null && age !== "") {
-    const ageNum = Number(age);
-    
-    if (ageNum >= 18) {
-        console.log("You're an adult");
-    } else if (ageNum >= 0) {
-        console.log("You're a child");
+    if (age >= 18) {
+        console.log("You're old enough to smoke sigarettes");
+    } else if (age >= 0) {
+        console.log("Unfortunately, I can't stop you from doing that");
+    } else if (age < 0) {
+        console.log("Hey man, you're not even born yet");
     } else {
-        console.log("The age cannot be negative");
+        console.log("What are you doing here?");
     }
 } else {
-    console.log("You have entered an invalid value");
+    console.log("What have you just entered?");
 }
 

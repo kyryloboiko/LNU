@@ -61,7 +61,7 @@ function addProduct() {
 // Formats the current date and time
 function formatDate() {
     const now = new Date();
-    const date = now.toLocaleDateString('uk-UA').replaceAll('.','/');
+    const date = now.toLocaleDateString();
     const time = now.toLocaleTimeString('uk-UA');
     return { date, time };
 }

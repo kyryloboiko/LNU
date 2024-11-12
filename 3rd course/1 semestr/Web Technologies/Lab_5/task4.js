@@ -1,5 +1,5 @@
 const shape = prompt(
-    "Enter the shape type (rectangle, triangle, circle, trapezoid, rhombus, or parallelogram):"
+    "Enter the shape type (1 - rectangle, 2 - triangle, 3 - circle, 4 - trapezoid, 5 - rhombus, or 6 - parallelogram):"
 ).toLowerCase();
 
 function isValidNumber(value) {
@@ -7,9 +7,9 @@ function isValidNumber(value) {
 }
 
 switch (shape) {
-    case "rectangle":
-        const length = prompt("Enter the length of the rectangle:");
-        const width = prompt("Enter the width of the rectangle:");
+    case 1:
+        const length = prompt("a:");
+        const width = prompt("b:");
 
         if (isValidNumber(length) && isValidNumber(width)) {
             const rectangleArea = Number(length) * Number(width);
@@ -19,9 +19,9 @@ switch (shape) {
         }
         break;
 
-    case "triangle":
-        const base = prompt("Enter the base of the triangle:");
-        const height = prompt("Enter the height of the triangle:");
+    case 2:
+        const base = prompt("a:");
+        const height = prompt("h:");
 
         if (isValidNumber(base) && isValidNumber(height)) {
             const triangleArea = (Number(base) * Number(height)) / 2;
@@ -31,8 +31,8 @@ switch (shape) {
         }
         break;
 
-    case "circle":
-        const radius = prompt("Enter the radius of the circle:");
+    case 3:
+        const radius = prompt("r:");
 
         if (isValidNumber(radius)) {
             const circleArea = Math.PI * Math.pow(Number(radius), 2);
@@ -42,10 +42,10 @@ switch (shape) {
         }
         break;
 
-    case "trapezoid":
-        const a = prompt("Enter the length of the first base of the trapezoid:");
-        const b = prompt("Enter the length of the second base of the trapezoid:");
-        const h = prompt("Enter the height of the trapezoid:");
+    case 4:
+        const a = prompt("a:");
+        const b = prompt("b:");
+        const h = prompt("h:");
 
         if (isValidNumber(a) && isValidNumber(b) && isValidNumber(h)) {
             const trapezoidArea = ((Number(a) + Number(b)) * Number(h)) / 2;
@@ -55,9 +55,9 @@ switch (shape) {
         }
         break;
 
-    case "rhombus":
-        const d1 = prompt("Enter the length of the first diagonal of the rhombus:");
-        const d2 = prompt("Enter the length of the second diagonal of the rhombus:");
+    case 5:
+        const d1 = prompt("a diagonal:");
+        const d2 = prompt("b diagonal:");
 
         if (isValidNumber(d1) && isValidNumber(d2)) {
             const rhombusArea = (Number(d1) * Number(d2)) / 2;
@@ -67,9 +67,9 @@ switch (shape) {
         }
         break;
 
-    case "parallelogram":
-        const base_p = prompt("Enter the base of the parallelogram:");
-        const height_p = prompt("Enter the height of the parallelogram:");
+    case 6:
+        const base_p = prompt("a:");
+        const height_p = prompt("h:");
 
         if (isValidNumber(base_p) && isValidNumber(height_p)) {
             const parallelogramArea = Number(base_p) * Number(height_p);
@@ -80,5 +80,5 @@ switch (shape) {
         break;
 
     default:
-        alert("Unknown shape type. Please choose from the provided options.");
+        alert("You've entered incorrect value.");
 }
