@@ -1,6 +1,6 @@
-const shape = prompt(
+const shape = parseInt(prompt(
     "Enter the shape type (1 - rectangle, 2 - triangle, 3 - circle, 4 - trapezoid, 5 - rhombus, or 6 - parallelogram):"
-).toLowerCase();
+));
 
 function isValidNumber(value) {
     return !isNaN(value) && value !== null && value !== "" && Number(value) > 0;

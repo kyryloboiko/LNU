@@ -1,29 +1,26 @@
-// Array to hold product objects
 let products = [];
-// Counter for the product items
 let itemCounter = 1;
 
-// Formats a number to two decimal places
 function formatNumber(number) {
     return number.toFixed(2);
 }
 
-// Converts a price string to a float
 function convertPrice(price) {
     return parseFloat(price.replace(',', '.'));
 }
 
-// Calculates the price without VAT from the price with VAT
 function calculatePriceWithoutVAT(priceWithVAT) {
     return priceWithVAT / 1.2;
 }
 
-// Validates if the provided value is a positive number
+function calculatePriceWithVAT(priceWithoutVAT) {
+    return priceWithoutVAT * 1.2;
+}
+
 function isValidNumber(value) {
     return !isNaN(value) && value > 0;
 }
 
-// Prompts user to add a product with details like name, price, and quantity
 function addProduct() {
     let name = prompt('Введіть назву товару:');
     if (name === null) return false;
@@ -36,7 +33,7 @@ function addProduct() {
     if (priceInput === null) return false;
     let price = convertPrice(priceInput);
     if (!isValidNumber(price)) {
-        alert('Некоректна ціна! Ціна повинна бути більше 0.');
+        alert('Ви ввели некоректне значення! Ціна повинна бути числом більше 0.');
         return false;
     }
 
@@ -44,7 +41,7 @@ function addProduct() {
     if (quantityInput === null) return false;
     let quantity = parseInt(quantityInput);
     if (!isValidNumber(quantity)) {
-        alert('Некоректна кількість! Кількість повинна бути більше 0.');
+        alert('Ви ввели некоректне значення! Ціна повинна бути числом більше 0.');
         return false;
     }
 
@@ -58,15 +55,13 @@ function addProduct() {
     return true;
 }
 
-// Formats the current date and time
 function formatDate() {
     const now = new Date();
-    const date = now.toLocaleDateString();
+    const date = now.toLocaleDateString('uk-UA').replaceAll('.', '/');
     const time = now.toLocaleTimeString('uk-UA');
     return { date, time };
 }
 
-// Generates and displays a receipt for the added products
 function generateReceipt() {
     if (products.length === 0) {
         console.log('Жодного товару не було додано. Чек не може бути сформований.');
@@ -108,7 +103,6 @@ function generateReceipt() {
     console.log(`Кількість артикулів: ${products.length}`);
     console.log('-'.repeat(40));
 
-    // Обробка оплати
     const paymentInput = prompt(`До сплати: ${formatNumber(totalWithVAT)} грн\nВведіть суму оплати:`);
     if (paymentInput !== null) {
         const payment = convertPrice(paymentInput);
@@ -134,7 +128,6 @@ function generateReceipt() {
     console.log('-'.repeat(40));
 }
 
-// Main function to control the flow of the program
 function main() {
     do {
         const continueAdding = addProduct();
@@ -144,5 +137,4 @@ function main() {
     generateReceipt();
 }
 
-// Start the program
 main();
