@@ -44,7 +44,7 @@ public class Module_2 {
             count++;
         }
         
-        System.out.println("Set after removal: " + carsSet);
+        System.out.println("Set after removal: ");
         System.out.println(carsSet);
         System.out.println();
 
