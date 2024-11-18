@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Кав'ярня">
+    <meta name="author" content="Kyrylo Boiko">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Connectins -->
+    <link rel="icon" type="images/x-icon" href="images/favicon.jpg">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Кав'ярня</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Кав'ярня</h1>
+        <!-- Navigation menu -->
+        <nav сlass="sticky-header">
+            <ul>
+                <li><a href="#about-us">Про нас</a></li>
+                <li>
+                    <details>
+                        <summary><a href="#menu">Меню</a></summary>
+                        <ul class="submenu">
+                            <li><a href="#drinks">Напої</a></li>
+                            <li><a href="#desserts">Десерти</a></li>
+                            <li><a href="#breakfasts">Сніданки</a></li>
+                            <li><a href="#meals">Страви</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li><a href="#reservation">Забронювати столик</a></li>
+                <li><a href="#contacts">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <!-- About Us section -->
+        <section id="about-us" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <img src="images/interior.jpg" alt="logo" class="logo">
+                    <h2>Про нас</h2>
+                    <p>
+                        Наша кав'ярня - це затишний куточок, де ви можете насолодитися смачною кавою та випічкою в
+                        атмосфері тепла та комфорту. Ми пропонуємо широкий вибір напоїв, свіжозварену каву з найкращих
+                        зерен та авторські десерти.
+                    </p>
+                    <p class="about-history">
+                        Наша історія почалася щойно, а за цей час ми завоювали любов багатьох відвідувачів завдяки
+                        нашому приємному сервісу та якісним продуктам.
+                    </p>
+                    <p class="about-mission">
+                        Наша місія - створювати атмосферу, де кожен гість зможе розслабитися і насолодитися моментом.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu section -->
+        <section id="menu">
+            <h2>Меню</h2>
+
+            <!-- Drinks section -->
+            <section class="menu-section" id="drinks">
+                <h3>Напої</h3>
+                <ul>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Американо</h1>
+                        </span>
+                        <span class="meal-price">35 грн.</span>
+                        <span class="meal-description">Класичний еспресо, розбавлений гарячою водою. Ідеальний для тих,
+                            хто цінує міцний і ароматний смак.</span>
+                        <span class="meal-image"><img src="images/americano.jpg" alt="americano" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Капучино</h1>
+                        </span>
+                        <span class="meal-price">40 грн.</span>
+                        <span class="meal-description">Еспресо з молоком та молочною піною, прикрашений какао-порошком.
+                            Ніжний та ароматний напій для будь-якого часу доби.</span>
+                        <span class="meal-image"><img src="images/cappuccino.jpg" alt="cappuccino" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Лате</h1>
+                        </span>
+                        <span class="meal-price">45 грн.</span>
+                        <span class="meal-description">Еспресо з великою кількістю спіненого молока. М'який і вершковий
+                            смак.</span>
+                        <span class="meal-image"><img src="images/latte.jpg" alt="latte" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Еспресо</h1>
+                        </span>
+                        <span class="meal-price">30 грн.</span>
+                        <span class="meal-description">Концентрований напій, отриманий шляхом пропущення гарячої води
+                            під тиском через мелену каву. База для багатьох інших кавових напоїв.</span>
+                        <span class="meal-image"><img src="images/espresso.jpg" alt="espresso" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Раф-кава</h1>
+                        </span>
+                        <span class="meal-price">50 грн.</span>
+                        <span class="meal-description">Оригінальний український напій, що поєднує в собі еспресо,
+                            згущене молоко, вершки та ваніль. Солодкий і вершковий смак.</span>
+                        <span class="meal-image"><img src="images/raf-coffee.jpg" alt="raf-coffee" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Флет-вайт</h1>
+                        </span>
+                        <span class="meal-price">45 грн.</span>
+                        <span class="meal-description">Австралійський напій, схожий на лате, але з меншою кількістю
+                            молока і більш щільною піною.</span>
+                        <span class="meal-image"><img src="images/flat-white.jpg" alt="flat-white" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Ірландський кава</h1>
+                        </span>
+                        <span class="meal-price">60 грн.</span>
+                        <span class="meal-description">Теплий і міцний напій з додаванням віскі, цукру та збитих
+                            вершків.</span>
+                        <span class="meal-image"><img src="images/irish-coffee.jpg" alt="irish-coffee"
+                                width="100"></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Desserts section -->
+            <section class="menu-section" id="desserts">
+                <h3>Десерти</h3>
+                <ul>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Торт "Чорний ліс"</h1>
+                        </span>
+                        <span class="meal-price">50 грн.</span>
+                        <span class="meal-description">Шоколадний бісквіт, вишневий сироп, збиті вершки та вишневі
+                            коктейлі.</span>
+                        <span class="meal-image"><img src="images/cake-black-forest.jpg" alt="cake-black forest"
+                                width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Тирамісу</h1>
+                        </span>
+                        <span class="meal-price">45 грн.</span>
+                        <span class="meal-description">Італійський десерт з савоярді, маскарпоне, кави та
+                            какао-порошку.</span>
+                        <span class="meal-image"><img src="images/tiramisu.jpg" alt="tiramisu" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Панчо</h1>
+                        </span>
+                        <span class="meal-price">35 грн.</span>
+                        <span class="meal-description">Шоколадний бісквіт, просочений кремом та посипаний
+                            горіхами.</span>
+                        <span class="meal-image"><img src="images/pancho.jpg" alt="pancho" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Штрудель</h1>
+                        </span>
+                        <span class="meal-price">40 грн.</span>
+                        <span class="meal-description">Тонке тісто, начинка з яблук, родзинок та кориці.</span>
+                        <span class="meal-image"><img src="images/strudel.jpg" alt="strudel" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Бельгійські вафлі</h1>
+                        </span>
+                        <span class="meal-price">30 грн.</span>
+                        <span class="meal-description">Легкі та хрусткі вафлі, ідеальні для подачі з морозивом, фруктами
+                            або шоколадом.</span>
+                        <span class="meal-image"><img src="images/belgian-waffles.jpg" alt="belgian-waffles"
+                                width="100"></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Breakfasts section -->
+            <section class="menu-section" id="breakfasts">
+                <h3>Сніданки</h3>
+                <ul>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Омлет з грибами та сиром</h1>
+                        </span>
+                        <span class="meal-price">60 грн.</span>
+                        <span class="meal-description">Пухкий омлет з грибами та сиром, подається з тостами та
+                            салатом.</span>
+                        <span class="meal-image"><img src="images/omelet-with-mushrooms-and-cheese.jpg"
+                                alt="omelet-with-mushrooms-and-cheese" width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Англійський сніданок</h1>
+                        </span>
+                        <span class="meal-price">80 грн.</span>
+                        <span class="meal-description">Яйце-пашот, бекон, сосиски, гриби, томати, квасоля та
+                            тости.</span>
+                        <span class="meal-image"><img src="images/english-breakfast.jpg" alt="english-breakfast"
+                                width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Вівсяна каша з фруктами</h1>
+                        </span>
+                        <span class="meal-price">40 грн.</span>
+                        <span class="meal-description">Вівсяна каша з додаванням свіжих фруктів та меду.</span>
+                        <span class="meal-image"><img src="images/oatmeal-with-fruits.jpg" alt="oatmeal-with-fruits"
+                                width="100"></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Meals section -->
+            <section class="menu-section" id="meals">
+                <h3>Страви</h3>
+                <ul>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Курячий шніцель</h1>
+                        </span>
+                        <span class="meal-price">70 грн.</span>
+                        <span class="meal-description">Куряче філе, паніроване в сухарній паніровці, смажене на
+                            сковороді.</span>
+                        <span class="meal-image"><img src="images/chicken-schnitzel.jpg" alt="chicken-schnitzel"
+                                width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Стейк з лосося</h1>
+                        </span>
+                        <span class="meal-price">120 грн.</span>
+                        <span class="meal-description">Стейк з лосося, запечений у духовці з лимонним соусом.</span>
+                        <span class="meal-image"><img src="images/salmon-steak.jpg" alt="salmon-steak"
+                                width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Паста Карбонара</h1>
+                        </span>
+                        <span class="meal-price">65 грн.</span>
+                        <span class="meal-description">Спагетті з беконом, яйцем та пармезаном.</span>
+                        <span class="meal-image"><img src="images/pasta-carbonara.jpg" alt="pasta-carbonara"
+                                width="100"></span>
+                    </li>
+                    <li>
+                        <span class="meal-name">
+                            <h1>Салат Цезар</h1>
+                        </span>
+                        <span class="meal-price">55 грн.</span>
+                        <span class="meal-description">Салат з римського салату, пармезаном, крутонами та соусом
+                            Цезар.</span>
+                        <span class="meal-image"><img src="images/caesar-salad.jpg" alt="caesar-salad"
+                                width="100"></span>
+                    </li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- Table reservation section -->
+        <section id="reservation">
+            <h2>Забронювати столик</h2>
+            <form>
+                <fieldset>
+                    <legend>Ваші дані</legend>
+                    <div>
+                        <label for="name">Ваше ім'я:</label>
+                        <input type="text" id="name" name="name" required placeholder="Ім'я та прізвище">
+                    </div>
+                    <div>
+                        <label for="tel">Ваш телефон:</label>
+                        <input type="tel" id="tel" name="tel" required placeholder="+38 (0XX) XXX XX XX">
+                    </div>
+                    <div>
+                        <label for="email">Ваш email:</label>
+                        <input type="email" id="email" name="email" required placeholder="example@email.com">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Деталі бронювання</legend>
+                    <div>
+                        <label for="date">Дата:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div>
+                        <label for="time">Час:</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                    <div>
+                        <label for="guests-number">Кількість гостей:</label>
+                        <select name="guests-number" id="guests-number" required>
+                            <option value="">Оберіть кількість</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Додатково</legend>
+                    <div>
+                        <label for="call-back">Зателефонуйте мені:</label>
+                        <input type="checkbox" id="call-back" name="call-back" value="call-back">
+                    </div>
+                    <div>
+                        <label for="wishes">Ваші побажання:</label>
+                        <textarea name="wishes" id="wishes" placeholder="Введіть ваші побажання"></textarea>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn">Забронювати</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+
+        <!-- Contacts section -->
+        <section id="contacts">
+            <h2>Контакти</h2>
+            <ul>
+                <li>
+                    <span class="icon">&#9742;</span>
+                    <a href="tel:НЕ ДЗВОНІТЬ НАМ, МИ САМІ ВАМ ПОДЗВОНИМО">+380991234567</a>
+                </li>
+                <li>
+                    <span class="icon">&#9993;</span>
+                    <a href="mailto:НЕ ПИШІТЬ НАМ, МИ САМІ ВАМ НАПИШЕМО">support@cafe.com</a>
+                </li>
+                <li>
+                    <span class="icon">&#128205;</span>
+                    <a href="https://www.google.com.ua/maps/search/%D0%9D%D0%95+%D0%A8%D0%A3%D0%9A%D0%90%D0%99%D0%A2%D0%AD+%D0%9D%D0%90%D0%A1,+%D0%9C%D0%98+%D0%A1%D0%90%D0%9C%D0%86+%D0%92%D0%90%D0%A1+%D0%9D%D0%90%D0%99%D0%94%D0%95%D0%9C%D0%9E/"
+                        target="_blank">
+                        Україна, Львівська обл., Львів, вул. Вигадана 1337
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="copyrights">
+            <p>&copy; 2024 Кав'ярня. Всі права захищені</p>
+        </section>
+
+    </footer>
+
+</body>
+
+</html>

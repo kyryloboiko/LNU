@@ -1,0 +1,96 @@
+/* Базові стилі */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Меню */
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav li {
+    margin: 0 10px;
+  }
+  
+  /* Заголовки */
+  h1 {
+    color: #333;
+    font-size: 2em;
+  }
+  
+  h2 {
+    color: #666;
+    font-size: 1.5em;
+  }
+  
+  /* Абзаци */
+  p {
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Зображення */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Списки */
+  ul {
+    list-style-type: circle;
+    padding-left: 20px;
+  }
+  
+  /* Форми */
+  input[type="text"], textarea {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Посилання */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Додаткові стилі */
+  section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+/* Для секції "Про нас" */
+  #about-us {
+    background-color: #996633; /* Більш світлий відтінок коричневого */
+    color: #fff; /* Білий текст для контрасту */
+  }
+  
+  /* Для кнопок */
+  .button {
+    background-color: #33CCFF; /* Блакитний, комплементарний до коричневого */
+    color: #fff;
+  }
