@@ -1,0 +1,62 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    <title>{{ event.name }}</title>
+{% endblock %}
+
+{% block content %}
+    <div class="content container-fluid">
+
+        <div class="card mb-3" style="max-width: 100%;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ place.image.url }}" class="img-fluid rounded-start" alt="{{ place.name }} Image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ place.name }}</h3>
+                        <p style="font-weight: lighter;" class="card-title">{{ place.country }}, {{ place.region }}, {{ place.city }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{place.kind}}, {{ place.type }}</small></p>
+                        <p class="card-text">{{ place.description }}</p>
+                        <p class="card-text"><small class="text-body-secondary">Average Review Score: {{ place.average_review_score }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" style="max-width: 100%;">
+            <div class="card-header">
+                <h5>Останні 10 відгуків з {{place.total_reviews}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for review in latest_reviews %}
+                    <li class="list-group-item">{{ review.review }} (Score: {{ review.score }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        {% if user.is_authenticated %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Додати відгук
+                </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Додати відгук</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

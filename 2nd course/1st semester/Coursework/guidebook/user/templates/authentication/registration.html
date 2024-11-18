@@ -1,0 +1,34 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    <title>Registration</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="content">
+    <h3>You are already signed in. If you want, you can logout in your <a href="{% url 'profile' %}">Profile</a></h3>
+</div>
+{% else %}
+<div class="content">
+    {% if form.errors %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>There was an error processing your data</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <h1>Registration</h1>
+    <br/><br/>
+    <form class="registration" action="{% url 'registration' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <br/><br/>
+        <input type="submit" value="Submit" class="btn btn-secondary">
+    </form>
+    <br/><br/>
+</div>
+{% endif %}
+
+{% endblock %}
