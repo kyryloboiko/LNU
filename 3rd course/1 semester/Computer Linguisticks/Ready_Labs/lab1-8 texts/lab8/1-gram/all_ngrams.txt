@@ -1,0 +1,4 @@
+N	Absolute count	Count
+1	25	6722
+2	304	5270
+3	1080	3836

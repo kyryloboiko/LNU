@@ -1,4 +1,3 @@
-// Оновлення дати і часу
 function updateDateTime() {
     const now = new Date();
     const options = {
@@ -14,22 +13,17 @@ function updateDateTime() {
     document.getElementById('datetime').textContent = now.toLocaleString('uk-UA', options);
 }
 
-// Оновлюємо час кожну секунду
 setInterval(updateDateTime, 1000);
 updateDateTime();
 
-// Робота з локальним сховищем для адміністратора
 const adminNameInput = document.getElementById('adminName');
 
-// Завантаження імені адміністратора при завантаженні сторінки
 adminNameInput.value = localStorage.getItem('adminName') || '';
 
-// Збереження імені адміністратора при зміні
 adminNameInput.addEventListener('input', (e) => {
     localStorage.setItem('adminName', e.target.value);
 });
 
-// Валідація форми
 const form = document.getElementById('participantForm');
 const nameRegex = /^[А-ЩЬЮЯҐЄІЇа-щьюяґєії'-]+$/;
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -39,25 +33,21 @@ function validateForm(formData) {
     let isValid = true;
     const errors = {};
 
-    // Валідація імені
     if (!formData.firstName || formData.firstName.length < 3 || !nameRegex.test(formData.firstName)) {
         errors.firstName = 'Ім\'я має містити мінімум 3 символи та лише українські літери';
         isValid = false;
     }
 
-    // Валідація прізвища
     if (!formData.lastName || formData.lastName.length < 3 || !nameRegex.test(formData.lastName)) {
         errors.lastName = 'Прізвище має містити мінімум 3 символи та лише українські літери';
         isValid = false;
     }
 
-    // Валідація email
     if (!formData.email || !emailRegex.test(formData.email)) {
         errors.email = 'Введіть коректну email адресу';
         isValid = false;
     }
 
-    // Валідація телефону
     if (!formData.phone || !phoneRegex.test(formData.phone)) {
         errors.phone = 'Введіть коректний номер телефону (мінімум 7 цифр)';
         isValid = false;
@@ -67,11 +57,9 @@ function validateForm(formData) {
 }
 
 function showErrors(errors) {
-    // Очищення попередніх помилок
     document.querySelectorAll('.error').forEach(error => error.textContent = '');
     document.querySelectorAll('input').forEach(input => input.classList.remove('error'));
 
-    // Відображення нових помилок
     Object.keys(errors).forEach(key => {
         const errorElement = document.getElementById(`${key}Error`);
         const inputElement = document.getElementById(key);
@@ -82,7 +70,6 @@ function showErrors(errors) {
     });
 }
 
-// Обробка відправки форми
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -103,7 +90,6 @@ form.addEventListener('submit', (e) => {
     }
 });
 
-// Додавання учасника
 function addParticipant(participant) {
     const participantsList = document.getElementById('participantsList');
     const participantCard = document.createElement('div');
@@ -123,7 +109,6 @@ function addParticipant(participant) {
         </div>
     `;
 
-    // Обробка кнопок відвідування
     participantCard.querySelector('.btn-visited').addEventListener('click', () => {
         participantCard.className = 'participant-card participant-visited';
     });
@@ -132,7 +117,6 @@ function addParticipant(participant) {
         participantCard.className = 'participant-card participant-not-visited';
     });
 
-    // Обробка кнопки видалення
     participantCard.querySelector('.btn-delete').addEventListener('click', () => {
         participantCard.remove();
     });
