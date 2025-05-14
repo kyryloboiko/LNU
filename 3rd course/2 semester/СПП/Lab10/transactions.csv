@@ -1,0 +1,7 @@
+T,Account,Amount,Time,Country,Type
+1,jane,15000,night,Brazil,payment
+2,mark,22000,night,USA,donation
+3,olga,5000,day,NorthKorea,transfer
+4,jane,8000,night,Ukraine,gambling
+5,ivan,30000,night,China,payment
+6,dima,12000,day,Germany,refund
